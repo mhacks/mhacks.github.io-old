@@ -26,7 +26,7 @@
 
     <div id="menu">
         <div class="pure-menu">
-            <a class="pure-menu-heading" href="index.html">MHacks</a>
+            <a class="pure-menu-heading" href="index.html">MHacks Hacker<br>Boards</a>
 
             <ul class="pure-menu-list">
                 <li class="pure-menu-item"><a href="basics.html" class="pure-menu-link">Basics</a></li>
@@ -38,21 +38,28 @@
         </div>
     </div>
 
-    <div id="main">
+    <div id="">
         <div class="header">
-            <h1>MHacks: Hacker Boards</h1>
-            <h2>Your guide to the basics!</h2>
+            <h1>Basics</h1>
+            <h2>Let's get the Hacker Boards up and running in Arduino!</h2>
         </div>
 
         <div class="content">
-            <h2 class="content-subhead">What am I holding?</h2>
-            <img class="pure-img-responsive" src="http://farm3.staticflickr.com/2875/9069037713_1752f5daeb.jpg" alt="Peyto Lake" align="right">
-                You're probably holding one of the MHacks: Refactor Hacker Boards given out at the hardware workshop! You can confirm by checking the picture to make sure that's really it.</p>
-                Now that you've confirmed you've got one - or even if you don't - you're probably a) itching to find out what it is, and b) to get started hacking with it! 
-            <h2 class="content-subhead">Getting started</h2>
-            <h2 class="content-subhead">Background/History</h2>
-                This project has been over a year in the making, having survived many different changes in fundamental goals, people on the team, and politics. Originally inspired by the awesome <a href="https://github.com/BoilerMake/BoilerMakeBadge_I">BoilerMake 2014 Badges</a>, we've brought a similar idea to <a href="http://mhacks.org">MHacks</a>: a beginner-friendly, interesting piece of hardware available to everyone attending the event.</p>
-                We'll have more information about the Hacker Board development process after the weekend. In the meantime, have fun playing and building with them! 
+            <h2 class="content-subhead">Let's go download drivers!</h2>
+                <p>You're going to want to download and install three things. First, there is the Arduino IDE (which we'll use for writing code and programming the boards). Secondly, a USB driver for the CP2104 - which is a chip on the board that converts USB into serial, which the ESP8266 can understand. Thirdly, a "board package" for the Arduino IDE, which contains all the files the Arduino IDE requires that has support for the ESP8266.</p>
+                <ul>
+                    <li>You can download the latest copy of the Arduino IDE from the top of the <a href="https://www.arduino.cc/en/Main/Software">official Arduino download page</a> - choose the right one for your operating system (I used 1.6.7 for this tutorial, but it should work with any Arduino version after 1.6.4, which added support for board packages).</li> 
+                    <li>You can find the CP2104 USB drivers from the chip's manufacturer, Silicon Labs, on <a href="https://www.silabs.com/products/mcu/Pages/USBtoUARTBridgeVCPDrivers.aspx">this page</a> - once again, choose the right one for your operating system.</li>
+                    <li>Lastly, there's the ESP8266 Board Package for Arduino. We'll be downloading and setting that up in the next section, as part of Arduino.</li>
+                </ul>
+                <p>Go ahead and install the Arduino IDE and the CP2104 drivers, and come back when you're set!</p>
+
+            <h2 class="content-subhead">Setting up the ESP8266 Board Package for Arduino</h2>
+                <p>Open up the Arduino IDE. Once open, go to the Preferences window (on OS X: <i>Arduino -> Preferences</i>) and add the text <tt>http://arduino.esp8266.com/stable/package_esp8266com_index.json</tt> 
+                    <figure><img class="pure-img-responsive" src="img/pref-urls.png" alt="Arduino Preferences menu on OS X" align="right" width="80%"></figure>
+                    <figure><img class="pure-img-responsive" src="img/boards-manager.png" alt="Boards Manager on OS X" align="right" width="80%"></figure>
+                into the "Additional Board Manager URLs" field (which is near the bottom).</p>
+                <p>Next, open up the Board Manager (on all platforms: <i>Tools -> Board: "Arduino Uno" -> Boards Manager...</i>), and scroll down to the bottom of the list of installed boards. At the bottom, there will be an entry with the title <i><b>esp8266</b> by <b>ESP8266 Community</b></i>. Click anywhere in that box, select the latest version (2.0.0), and press the 'Install' button. Once the bottom bar says <i>Installation completed!</i>, close the Boards Manager.
         <!--    <h2 class="content-subhead">How to use this layout</h2>
             <p>
                 To use this layout, you can just copy paste the HTML, along with the CSS in <a href="/css/layouts/side-menu.css" alt="Side Menu CSS">side-menu.css</a>, and the JavaScript in <a href="/js/ui.js">ui.js</a>. The JS file uses vanilla JavaScript to simply toggle an <code>active</code> class that makes the menu responsive.
