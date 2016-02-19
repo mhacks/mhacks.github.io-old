@@ -1,5 +1,9 @@
 body {
-    color: #777;
+    color: #555;
+}
+
+tt {
+    font-size: 250px;
 }
 
 .pure-img-responsive {

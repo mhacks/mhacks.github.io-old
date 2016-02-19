@@ -45,6 +45,23 @@
         </div>
 
         <div class="content">
+            <h2 class="content-subhead">Hacker Boards hardware</h2>
+                The Hacker Boards are a simple development platform for WiFi-connected hackathon hardware projects. Here's a list of what's on the board:
+                <ol>
+                    <li><b>ESP8266 WiFi module</b> - This module is the main "brains" of this board. When we're writing code and say we're "programming" the board, we're actually programming this module. This contains the microprocessor that runs the code, a WiFi radio hardware, and has various pins - physical connections - that one can attach various pieces of hardware to (i.e. LEDs or buttons) via the through-holes. There is a small blue light on the module that shows when the ESP8266 is being programmed.</li>
+                    <li><b>Through-holes</b> - These are holes that are connected to the various pins of the ESP8266. Using header pins, these through-holes allow the ESP8266 to be easily breadboardable.</li>
+                    <li><b>Header pins</b> - By soldering these into the through-holes, an ESP8266 can be easily plugged into a breadboard.</li>
+                    <li><b>Blue <big><tt>POWER</tt></big> LED</b> - If this blue LED is on (or whichever LED has <big><tt>POWER</tt></big> written next to it - the colors may be flipped with the next LED), then the board is receiving power. When you plug this board in, this LED should turn on and stay on.</li>
+                    <li><b>Yellow <big><tt>GPIO 0</tt></big> LED</b> - GPIO is one of the two types of pins on the ESP8266, and stands for General Purpose Input-Output. Essentially, it can output a logical high voltage (3.3 volts), or a logical low voltage (0 volts, or ground). This LED shows which state <big><tt>GPIO 0</tt></big> is in. When the ESP8266 boots, this LED should blink momentarily.</li>
+                    <li><b><big><tt>RESET</tt> button</big></b> - Pressing this button resets, or essentially restarts, the microcontroller. Very useful if you want to restart your program quickly!</li>
+                    <li><b><big><tt>GPIO 0</tt> button</big></b> - </li> Pressing this button makes <big><tt>GPIO 0</tt></big> become a logical high, at 3.3 volts. Don't press the button while trying to turn the LED on - 
+                    <li><b>White LEDs - WS2812B</b> - </li>
+                    <li><b>CP2104 chip</b> - </li>
+                    <li><b>microUSB port</b> - </li>
+                    <li><b>Optional potentiometer</b> - </li>
+                    <li><b>Breadboard</b> - </li>
+                </ol>
+                Alright - try plugging in your ESP8266! You should see the yellow <big><tt>GPIO 0</tt></big> LED flicker, and the blue <big><tt>POWER</tt></big> LED turn on and stay on.
             <h2 class="content-subhead">Let's go download drivers!</h2>
                 <p>You're going to want to download and install three things. First, there is the Arduino IDE (which we'll use for writing code and programming the boards). Secondly, a USB driver for the CP2104 - which is a chip on the board that converts USB into serial, which the ESP8266 can understand. Thirdly, a "board package" for the Arduino IDE, which contains all the files the Arduino IDE requires that has support for the ESP8266.</p>
                 <ul>
@@ -52,14 +69,15 @@
                     <li>You can find the CP2104 USB drivers from the chip's manufacturer, Silicon Labs, on <a href="https://www.silabs.com/products/mcu/Pages/USBtoUARTBridgeVCPDrivers.aspx">this page</a> - once again, choose the right one for your operating system.</li>
                     <li>Lastly, there's the ESP8266 Board Package for Arduino. We'll be downloading and setting that up in the next section, as part of Arduino.</li>
                 </ul>
+<figure><img class="pure-img-responsive" src="img/pref-urls.png" alt="Arduino Preferences menu on OS X" align="right" width="70%"></figure>
                 <p>Go ahead and install the Arduino IDE and the CP2104 drivers, and come back when you're set!</p>
-
-            <h2 class="content-subhead">Setting up the ESP8266 Board Package for Arduino</h2>
+            <h2 class="content-subhead">Setting up the ESP8266 Board Package for Arduino</h2> 
                 <p>Open up the Arduino IDE. Once open, go to the Preferences window (on OS X: <i>Arduino -> Preferences</i>) and add the text <tt>http://arduino.esp8266.com/stable/package_esp8266com_index.json</tt> 
-                    <figure><img class="pure-img-responsive" src="img/pref-urls.png" alt="Arduino Preferences menu on OS X" align="right" width="80%"></figure>
-                    <figure><img class="pure-img-responsive" src="img/boards-manager.png" alt="Boards Manager on OS X" align="right" width="80%"></figure>
+                    <figure><img class="pure-img-responsive" src="img/boards-manager.png" alt="Boards Manager on OS X" align="right" width="70%"></figure>
                 into the "Additional Board Manager URLs" field (which is near the bottom).</p>
-                <p>Next, open up the Board Manager (on all platforms: <i>Tools -> Board: "Arduino Uno" -> Boards Manager...</i>), and scroll down to the bottom of the list of installed boards. At the bottom, there will be an entry with the title <i><b>esp8266</b> by <b>ESP8266 Community</b></i>. Click anywhere in that box, select the latest version (2.0.0), and press the 'Install' button. Once the bottom bar says <i>Installation completed!</i>, close the Boards Manager.
+                <p>Next, open up the Board Manager (on all platforms: <i>Tools -> Board: "Arduino Uno" -> Boards Manager...</i>), and scroll down to the bottom of the list of installed boards. At the bottom, there will be an entry with the title "<b>esp8266</b> by <b>ESP8266 Community</b>". Click anywhere in that box, select the latest version (2.0.0), and press the 'Install' button. Once the bottom bar says <i>Installation completed!</i>, close the Boards Manager.
+            <h2 class="content-subhead">The 'Hello World' of Hardware</h2>
+                Just as a program that outputs "Hello World" is typically the first program that a person writes when learning programming for the first time, a program that blinks an LED is typically the first program written for hardware. To run a program that blinks the small LED next to the Power LED on the Hacker Boards, in Arduino, open the example <i>Blink</i> program at <i>File->Examples->01.Basics->Blink</i>. Then, change line 20, <tt>pinMode(13, OUTPUT);</tt> to <tt>pinMode(0, OUTPUT);</tt>, since the small LED on the board is on pin 0.
                 <p>Make sure to set the "reset method" in the Tools menu (<i>Tools -> Reset:Method</i>) to <tt>nodemcu</tt> instead of <tt>cu</tt>.
                 <!--    <h2 class="content-subhead">How to use this layout</h2>
             <p>
