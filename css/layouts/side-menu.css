@@ -11,6 +11,10 @@ tt {
     height: auto;
 }
 
+
+.img-padding {
+    padding: 3% 3% 3% 3%;
+}
 /*
 Add transition to containers so they can push in and out.
 */
