@@ -54,12 +54,12 @@
                     <li><b>Blue <big><tt>POWER</tt></big> LED</b> - If this blue LED is on (or whichever LED has <big><tt>POWER</tt></big> written next to it - the colors may be flipped with the next LED), then the board is receiving power. When you plug this board in, this LED should turn on and stay on.</li>
                     <li><b>Yellow <big><tt>GPIO 0</tt></big> LED</b> - GPIO is one of the two types of pins on the ESP8266, and stands for General Purpose Input-Output. Essentially, it can output a logical high voltage (3.3 volts), or a logical low voltage (0 volts, or ground). This LED shows which state <big><tt>GPIO 0</tt></big> is in. When the ESP8266 boots, this LED should blink momentarily.</li>
                     <li><b><big><tt>RESET</tt> button</big></b> - Pressing this button resets, or essentially restarts, the microcontroller. Very useful if you want to restart your program quickly!</li>
-                    <li><b><big><tt>GPIO 0</tt> button</big></b> - </li> Pressing this button makes <big><tt>GPIO 0</tt></big> become a logical high, at 3.3 volts. Don't press the button while trying to turn the LED on - 
-                    <li><b>White LEDs - WS2812B</b> - </li>
-                    <li><b>CP2104 chip</b> - </li>
-                    <li><b>microUSB port</b> - </li>
-                    <li><b>Optional potentiometer</b> - </li>
-                    <li><b>Breadboard</b> - </li>
+                    <li><b><big><tt>GPIO 0</tt> button</big></b> - </li> Pressing this button makes <big><tt>GPIO 0</tt></big> become a logical high, at 3.3 volts. Don't press the button while trying to turn the LED on
+                    <li><b>White LEDs - WS2812B</b> These are addressable LEDs that can be programmed to show a variety of colors. Use the Adafruit NeoPixel library to talk to them on GPIO pin 15 </li>
+                    <li><b>CP2104 chip</b> This chip lets your ESP8266 module communicate to your laptop through USB. Use the Serial object on your Arduino to send messages to/from your laptop. </li>
+                    <li><b>microUSB port</b> This is where you plug in your USB cable so that it can connect to your laptop. You can also power your board through this with a portable battery. </li>
+                    <li><b>Optional potentiometer</b> This is a dial you can solder onto your board. If you use analogRead(0) in your program, it will tell you how far the dial is turned (0-1023) </li>
+                    <li><b>Breadboard</b> If you solder header pins onto your board, you can set it on a breadboard. This will allow you to connect other things to it, like sensors, LEDs, and more! </li>
                 </ol>
                 Alright - try plugging in your ESP8266! You should see the yellow <big><tt>GPIO 0</tt></big> LED flicker, and the blue <big><tt>POWER</tt></big> LED turn on and stay on.
             <h2 class="content-subhead">Let's go download drivers!</h2>
@@ -76,9 +76,22 @@
                     <figure><img class="pure-img-responsive" src="img/boards-manager.png" alt="Boards Manager on OS X" align="right" width="70%"></figure>
                 into the "Additional Board Manager URLs" field (which is near the bottom).</p>
                 <p>Next, open up the Board Manager (on all platforms: <i>Tools -> Board: "Arduino Uno" -> Boards Manager...</i>), and scroll down to the bottom of the list of installed boards. At the bottom, there will be an entry with the title "<b>esp8266</b> by <b>ESP8266 Community</b>". Click anywhere in that box, select the latest version (2.0.0), and press the 'Install' button. Once the bottom bar says <i>Installation completed!</i>, close the Boards Manager.
-            <h2 class="content-subhead">The 'Hello World' of Hardware</h2>
-                Just as a program that outputs "Hello World" is typically the first program that a person writes when learning programming for the first time, a program that blinks an LED is typically the first program written for hardware. To run a program that blinks the small LED next to the Power LED on the Hacker Boards, in Arduino, open the example <i>Blink</i> program at <i>File->Examples->01.Basics->Blink</i>. Then, change line 20, <tt>pinMode(13, OUTPUT);</tt> to <tt>pinMode(0, OUTPUT);</tt>, since the small LED on the board is on pin 0.
+				
+				<h2 class = "content-subhead">Libraries for Examples</h2>
+				<p>There are a few libraries you'll need to get started. The first set are the WiFi libraries. These conveniently come with the Board Package you should have already installed! You can find them in <i>Sketch->Add Library->ESP8266...</i> The one we use for our examples is <i>ESP8266WiFi</i>. 
+				<p>The next library you need is the Adafruit NeoPixel library. You use this library to interact with the addressable LEDs. Download the library from <a href = "http://tinyurl.com/mhacks-hello"> this link </a> as a .ZIP file. To add it to the Arduino IDE, go to <i>Sketch->Include Library->Add .ZIP Library</i>. If you're on a Mac, you'll have to re-zip the folder by right-clicking and clicking on <i>Compress</i> "...".
+				<p>After that, you should install an Arduino library for parsing JSON. We use it for one of our demos. You can find it at <a href = "http://tinyurl.com/mhacks-json">this link</a>. Install it the same way you installed the NeoPixel library.
+				
+				<h2 class="content-subhead">The 'Hello World' of Hardware</h2>
+                Just as a program that outputs "Hello World" is typically the first program that a person writes when learning programming for the first time, a program that blinks an LED is typically the first program written for hardware. To run a program that blinks the small LED next to the Power LED on the Hacker Boards, in Arduino, download the code <a href = "https://github.com/mhacks/hacker-boards-refactor/blob/master/software/Hello_World/Hello_World.ino"> here </a>. It's a modified version of the standard Arduino Blink example, which lives in <i>File->Examples->Examples->01.Basics->Blink</i>. Just change line 20 from <tt>pinMode(13, OUTPUT);</tt> to <tt>pinMode(0, OUTPUT);</tt>, since the small LED on the board is on pin 0.
                 <p>Make sure to set the "reset method" in the Tools menu (<i>Tools -> Reset:Method</i>) to <tt>nodemcu</tt> instead of <tt>cu</tt>.
+				
+				<h2 class = "content-subhead">Addressable LEDs</h2>
+				<p>Addressable LEDs are special LEDs that you can chain together and program individually. You can tell them what color to be, and how bright to be! These boards have two chained together, and are both controlled with GPIO 15.
+				<p>To add them to your project, go to <i>Sketch->Include Library->Adafruit NeoPixel</i>. This will add the correct header file to your project. You will then need to create an instance of the object that will interact with the leds with the line <tt>Adafruit_NeoPixel name = Adafruit_NeoPixel(NUM LEDS, IO PIN, NEO_GRB + NEO_KHZ800);</tt> "name" is what you want to name your object (usually "leds" is good), NUM_LEDS is the number of addressable LEDs you have chained (always 2 for this board), IO pin is the control pin for the LEDs (always 15 for this board), and the last line configures the LEDs (that's always the option you want for this board).
+				<p>To change the color of your pixels, use <tt>leds.setPixelColor(#,r,g,b);</tt>. "#" is the index of your LED (always 0 or 1 for this board), and r/g/b are the color values for each LED. 255/255/255 is bright white, 0/0/0 is off. You also have the ability to configure the brightness of all of the LEDs with <tt>leds.setBrightness(#);</tt>. "#" is a value 0-255, where 0 is off and 255 is blindingly bright. 
+				<p>After you configure your LEDs, you need to add <tt>leds.show();</tt>. This tells the microcontroller to update the LEDs all at once.
+				<p>There's an demo project at <a href= "http://tinyurl.com/mhacks-leds"> this link </a>. It makes your LEDs blink random colors!
                 <!--    <h2 class="content-subhead">How to use this layout</h2>
             <p>
                 To use this layout, you can just copy paste the HTML, along with the CSS in <a href="/css/layouts/side-menu.css" alt="Side Menu CSS">side-menu.css</a>, and the JavaScript in <a href="/js/ui.js">ui.js</a>. The JS file uses vanilla JavaScript to simply toggle an <code>active</code> class that makes the menu responsive.
