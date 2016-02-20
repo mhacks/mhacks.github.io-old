@@ -40,20 +40,16 @@
 
     <div id="main">
         <div class="header">
-            <h1>MHacks: Hacker Boards</h1>
-            <h2>Let's make some things talk to other things!</h2>
+            <h1>Networking</h1>
+            <h2>Time to connect things to the internet!</h2>
         </div>
 
         <div class="content">
-            <h2 class="content-subhead">What am I holding?</h2>
-            <img class="pure-img-responsive" src="http://farm3.staticflickr.com/2875/9069037713_1752f5daeb.jpg" alt="Peyto Lake" align="right">
-                You're probably holding one of the MHacks: Refactor Hacker Boards given out at the hardware workshop! You can confirm by checking the picture to make sure that's really it.</p>
-                Now that you've confirmed you've got one - or even if you don't - you're probably a) itching to find out what it is, and b) to get started hacking with it! 
-            <h2 class="content-subhead">Getting started</h2>
-            <h2 class="content-subhead">Background/History</h2>
-                This project has been over a year in the making, having survived many different changes in fundamental goals, people on the team, and politics. Originally inspired by the awesome <a href="https://github.com/BoilerMake/BoilerMakeBadge_I">BoilerMake 2014 Badges</a>, we've brought a similar idea to <a href="http://mhacks.org">MHacks</a>: a beginner-friendly, interesting piece of hardware available to everyone attending the event.</p>
-                We'll have more information about the Hacker Board development process after the weekend. In the meantime, have fun playing and building with them! 
-        <!--    <h2 class="content-subhead">How to use this layout</h2>
+            <h2 class="content-subhead">How do I connect to the internet?</h2>
+			<p>The ESP8266 microcontroller has a built-in WiFi radio, so it is a very easy to integrate internet connectivity into your project! The Arduino Board Package for the ESP8266 comes with a good set of libraries to get you started. You can find them in <i>Sketch->Add Library->ESP8266...</i> The one we use for our examples is <i>ESP8266WiFi</i>.
+			<p>We also found a good JSON parsing library for Arduino. It's used in the following networking example, so you should download it! The instructions are on the basics page.
+			<p>This example project (<a href = "http://tinyurl.com/mhacks-network">this link</a>) runs through some of the basics. It will connect to this website, attempt to load "/ws2812-test.html". This page has some data to be parsed. The JSON library runs through it, and picks out colors to write to the LEDs. If someone changes the page (like in the middle of a workshop), the board will reload the page and update the LEDs to new colors.
+                    <!--    <h2 class="content-subhead">How to use this layout</h2>
             <p>
                 To use this layout, you can just copy paste the HTML, along with the CSS in <a href="/css/layouts/side-menu.css" alt="Side Menu CSS">side-menu.css</a>, and the JavaScript in <a href="/js/ui.js">ui.js</a>. The JS file uses vanilla JavaScript to simply toggle an <code>active</code> class that makes the menu responsive.
             </p>
